@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, Text, View, TouchableOpacity } from "react-native";
 import Buttons from "../components/Buttons";
 import InputFields from "../components/InputFields";
+import { useDispatch, useSelector } from "react-redux";
 
 function Personal({ navigation }) {
+  const user = useSelector((state) => state.user.value);
+  const [userName, setUsername] = useState("");
+
+  const text = user.map((users) => {
+    if (users.isLoggedIn === true) {
+      return users;
+    }
+  });
+
   return (
     <ScrollView>
       <View className="container flex justify-center items-center bg-[#800000] p-10 gap-y-1 rounded-b-[50px]">
@@ -14,7 +24,7 @@ function Personal({ navigation }) {
         </View>
         <View className="gap-y-5 justify-center items-center">
           <Text className="text-white text-xl font-semibold">
-            John Carl Surbano
+            {text.username}
           </Text>
         </View>
       </View>
@@ -25,15 +35,15 @@ function Personal({ navigation }) {
       </View>
       <View className="px-6">
         <Text className="text-[15px]">Username</Text>
-        <InputFields className="text-white border-2" />
+        <InputFields value="brixdaomilas" />
       </View>
       <View className="px-6">
         <Text className="text-[15px] pt-5">Email</Text>
-        <InputFields className="text-white " />
+        <InputFields value="daomilasbrixd@gmail.com" />
       </View>
       <View className="px-6">
         <Text className="text-[15px] pt-5">Password</Text>
-        <InputFields className="text-whi    te " hidden={true} />
+        <InputFields className="text-white" title="******" hidden={true} />
       </View>
       <View className="px-6">
         <Text className="text-[15px] pt-5">Phone Number</Text>

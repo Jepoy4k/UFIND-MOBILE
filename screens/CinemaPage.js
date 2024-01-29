@@ -14,14 +14,12 @@ const aqua = require("../assets/aquaman.jpg");
 const openheimer = require("../assets/openheimer.jpg");
 
 function CinemaPage({ navigation }) {
-
   const mall = useSelector((state) => state.cinema.value);
-  const text = mall.map(items => {
-    if(items.isCheked === true){
-      return items.mall
+  const text = mall.map((items) => {
+    if (items.isCheked === true) {
+      return items.mall;
     }
-  })
-
+  });
 
   return (
     <ScrollView>
@@ -37,7 +35,7 @@ function CinemaPage({ navigation }) {
       </View>
       <View>
         <View className="rounded-xl overflow-hidden shadow-black p-5">
-          <TouchableOpacity onPress={() => navigation.navigate("MoviePage")}>
+          <TouchableOpacity onPress={() => navigation.navigate("MoviePage2")}>
             <ImageBackground
               className="object-cover rounded-3xl h-32 w-full overflow-hidden flex justify-center items-center"
               source={rain}
@@ -61,7 +59,7 @@ function CinemaPage({ navigation }) {
           </TouchableOpacity>
         </View>
         <View className="rounded-xl overflow-hidden shadow-black p-5">
-          <TouchableOpacity onPress={() => navigation.navigate("MoviePage")}>
+          <TouchableOpacity onPress={() => navigation.navigate("MoviePage3")}>
             <ImageBackground
               className="object-cover rounded-3xl h-32 w-full overflow-hidden flex justify-center items-center"
               source={openheimer}

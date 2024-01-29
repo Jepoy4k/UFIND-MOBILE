@@ -32,5 +32,8 @@ export const cinemaSlice = createSlice({
 });
 
 export const { checked } = cinemaSlice.actions;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 74bd056c1c6753181408de5cab254c83ac96f38b
 export default cinemaSlice.reducer;

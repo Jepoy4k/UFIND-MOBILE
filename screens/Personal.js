@@ -10,7 +10,7 @@ function Personal({ navigation }) {
 
   const text = user.map((users) => {
     if (users.isLoggedIn === true) {
-      return users;
+      return users.username;
     }
   });
 
@@ -24,7 +24,7 @@ function Personal({ navigation }) {
         </View>
         <View className="gap-y-5 justify-center items-center">
           <Text className="text-white text-xl font-semibold">
-            {text.username}
+            {text}
           </Text>
         </View>
       </View>

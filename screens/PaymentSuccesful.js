@@ -5,7 +5,7 @@ const check = require("../assets/GreenCheck.png");
 import Button from '../components/Buttons';
 
 
-const paymensuccessful = () => {
+const PaymentSuccessful = ({navigation}) => {
   return (
     <View style={{ flex: 1, backgroundColor: '#800000', alignItems: 'center', padding:50}}>
       <View>
@@ -14,12 +14,12 @@ const paymensuccessful = () => {
       <View>
         <Image source={check} style={{width:100, height:100,marginBottom:50}}></Image>
       </View>
-      <Text style={{color:'white', fontSize:20, fontStyle:'bold', marginBottom:40}}>Payment Successful</Text>
+      <Text style={{color:'white', fontSize:20, marginBottom:40}}>Payment Successful</Text>
       <Text style={{color:'white', fontSize:16, marginBottom:70}}> Check your email</Text>
       <Text style={{textAlign:'center', color:'white', fontSize:12, marginBottom:50, marginTop:-50}}>Kindly check your email for notification of the successful payment.</Text>
       <TouchableOpacity
           className="bg-[#000000] p-2 px-20 rounded-lg"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate("HomePage")}
         >
           <Text className="text-white text-lg">Get Started</Text>
         </TouchableOpacity>
@@ -27,4 +27,4 @@ const paymensuccessful = () => {
   );
 };
 
-export default paymensuccessful
+export default PaymentSuccessful;

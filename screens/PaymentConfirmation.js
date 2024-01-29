@@ -4,7 +4,7 @@ import Buttons from '../components/Buttons'
 import InputFields from '../components/InputFields'
 
 const gcash = require("../assets/GCASHLOGO.png");
-function PaymentConfirmation() {
+function PaymentConfirmation({navigation}) {
   return (
     // <ScrollView>
     <View className="flex-1 justify-center gap-y-20">
@@ -24,7 +24,7 @@ function PaymentConfirmation() {
             </View>
         </View>
         <View className="w-[90%] self-center">
-            <Buttons title="Confirm Payment" style="w-[100%] bg-red-600 text-center py-2 text-lg rounded-md text-white"/>
+            <Buttons clicker={() => navigation.navigate("PaymentSuccessful")} title="Confirm Payment" style="w-[100%] bg-red-600 text-center py-2 text-lg rounded-md text-white"/>
         </View>
     </View>
  

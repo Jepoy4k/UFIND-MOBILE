@@ -1,121 +1,51 @@
-import React, { useState } from "react";
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  secureTextEntry,
-  SafeAreaView,
-  ImageBackground,
-  Image,
-} from "react-native";
-import Buttons from "../components/Buttons";
-import InputFields from "../components/InputFields";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/User";
+import React from "react";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 
-const bgimg = require("../assets/bgimg1.png");
-const mylogo = require("../assets/SYNEMA LOGO.png");
-
-function Login({ navigation }) {
-  const [userName, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errMsg, setErrorMessage] = useState("");
-  const [isError, setIsError] = useState(false);
-
-  const user = useSelector((state) => state.user.value);
-  const dispatch = useDispatch();
-
-  loginHandler = () => {
-   console.log(user)
-    if (userName !== "" && password !== "") {
-      setIsError(false)
-      user.filter((users) => {
-        if (users.username !== userName || users.password !== password) {
-          setUsername("");
-          setPassword("");
-          setErrorMessage("Invalid username or password")
-          setIsError(true)
-        }
-        else if (users.username === userName && users.password === password) {
-          dispatch(
-            login({username: userName, password: password, isLoggedIn: false,  email: users.email})
-            );
-            setPassword("");
-            setUsername("");
-            navigation.navigate("HomePage");
-            setErrorMessage();
-            setIsError(false);
-
-        }
-      });
-      
-    } 
-    else{
-      setUsername("");
-      setPassword("");
-      setErrorMessage("Please enter a username or password");
-      setIsError(true);
-  }
-  };
-
+export default function Login() {
   return (
-    <ImageBackground
-      source={bgimg}
-      className="flex-1 object-contain bg-no-repeat bg-scroll"
-    >
-      <View className="justify-evenly items-center flex-1 gap-8">
-        <View>
-          <Image
-            source={mylogo}
-            style={{
-              width: 250,
-              height: 250,
-              marginBottom: -200,
-              marginTop: -80,
-            }}
-          ></Image>
-        </View>
-        <View className="gap-y-8 w-[80%]">
-          <View>
-            <InputFields
-              title="Username"
-              label="Username"
-              styles="text-white text-[18px] py-2"
-              onchange={(e) => setUsername(e)}
-              value={userName}
-            />
-          </View>
-          <View>
-            <InputFields
-              hidden={true}
-              title="Password"
-              label="Password"
-              styles="text-white text-[18px] py-2"
-              onchange={(e) => setPassword(e)}
-              value={password}
-            />
-          </View>
-          <TouchableOpacity className="self-end">
-            <Buttons style="text-[15px] text-white" title="Forgot Password" />
-          </TouchableOpacity>
-          {isError && <Text className="text-red-500 text-center">{errMsg}</Text>}
-        </View>
+    <View className="flex-1 bg-blue-900 items-center justify-center">
+      <View className="bg-white w-4/5 rounded-2xl shadow-lg">
+        {/* Gradient Effect (Optional, could be handled using a library like react-native-linear-gradient) */}
+        <View className="h-6 rounded-t-2xl bg-gradient-to-r from-blue-500 to-blue-700"></View>
 
-        <View className="w-[80%] h-[10%] justify-between">
-          <Buttons
-            style="text-white text-center"
-            title="Don't Have an Account Yet? Sign up"
-            clicker={() => navigation.navigate("Register")}
-          />
-          <Buttons
-            style="bg-red-700 text-center text-white py-2 text-xl rounded-lg"
-            title="Login"
-            clicker={loginHandler}
-          />
+        <View className="px-6 py-8">
+          {/* Username Field */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">Username</Text>
+          <View className="bg-blue-100 flex-row items-center rounded-md px-3 mb-4">
+            <Text className="text-xl">👤</Text>
+            <TextInput
+              placeholder="Enter username"
+              value="Jared Rara"
+              className="text-base text-gray-800 flex-1 ml-3 py-2"
+            />
+          </View>
+
+          {/* Password Field */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">Password</Text>
+          <View className="bg-blue-100 flex-row items-center rounded-md px-3 mb-6">
+            <Text className="text-xl">🔒</Text>
+            <TextInput
+              placeholder="Enter password"
+              secureTextEntry
+              value="******"
+              className="text-base text-gray-800 flex-1 ml-3 py-2"
+            />
+          </View>
+
+          {/* Login Button */}
+          <TouchableOpacity className="bg-blue-600 py-3 rounded-full items-center">
+            <Text className="text-white text-lg font-bold">LOGIN</Text>
+          </TouchableOpacity>
+
+          {/* Register Text */}
+          <View className="flex-row justify-center mt-4">
+            <Text className="text-gray-500">Don't have an account?</Text>
+            <TouchableOpacity>
+              <Text className="text-blue-500 font-bold ml-2">Register Now</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 }
-
-export default Login;

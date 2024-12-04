@@ -1,144 +1,86 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  TouchableOpacity,
   View,
   Text,
-  secureTextEntry,
-  ImageBackground,
-  Image,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
-import Buttons from "../components/Buttons";
-import InputFields from "../components/InputFields";
-import { useDispatch } from "react-redux";
-import { register } from "../features/User";
 
-const bgimg = require("../assets/bgimg1.png");
-const mylogo = require("../assets/SYNEMA LOGO.png");
-
-function Register({ navigation }) {
-  const dispatch = useDispatch();
-
-  const [userName, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorText, setErrText] = useState("");
-  const [isError, setisError] = useState(false);
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const handleSubmit = () => {
-    if (
-      userName === "" &&
-      email === "" &&
-      password === "" &&
-      confirmPassword === ""
-    ) {
-      setErrText("Please Provide an Input");
-      setisError(true);
-    } else if (userName === "" || email === "") {
-      setErrText("Please input your Username or Email");
-      setisError(true);
-    } else if (password === "" || confirmPassword === "") {
-      setErrText("Please input your Password");
-      setisError(true);
-    } else if (password !== confirmPassword) {
-      setErrText("Password Does not match");
-      setisError(true);
-    } else if (!password.match(passwordRegex)) {
-      setErrText("Weak Password");
-      setisError(true);
-    } else if (!email.match(emailRegex)) {
-      setErrText("Invalid email");
-      setisError(true);
-    } else if (
-      userName !== "" &&
-      email !== "" &&
-      password !== "" &&
-      confirmPassword !== ""
-    ) {
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setErrText("");
-      setisError(false);
-      dispatch(register({ username: userName, email: email, password: password, isLoggedIn: false}));
-      navigation.navigate("Login");
-    }
-  };
-
+export default function Register() {
   return (
-    <ImageBackground
-      source={bgimg}
-      className="flex-1 object-contain bg-no-repeat bg-scroll"
-    >
-      <View className="justify-center items-center pb-6 flex-1">
-        <View className="mb-8">
-          <Image
-            source={mylogo}
-            style={{ width: 150, height: 150, marginBottom: -50 }}
-          ></Image>
-        </View>
-        <View className="mb-3">
-          <Text className="text-2xl font-extrabold pb-2 text-white">
-            Create Account
+    <View className="flex-1 bg-blue-900 items-center justify-center">
+      <View className="bg-white w-4/5 rounded-2xl shadow-lg">
+        {/* Gradient Header */}
+        <View className="h-6 rounded-t-2xl bg-gradient-to-r from-blue-500 to-blue-700"></View>
+
+        {/* Form Fields */}
+        <ScrollView contentContainerStyle={{ padding: 16 }}>
+          {/* Student ID */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">
+            Student ID
           </Text>
-        </View>
-
-        <View className="gap-y-5 w-[80%]">
-          <View>
-            <InputFields
-              title="Username"
-              label="Username"
-              onchange={(e) => setUsername(e)}
-              styles="text-white text-[18px] py-2"
-            />
-          </View>
-          <View>
-            <InputFields
-              title="Email"
-              label="Email"
-              onchange={(e) => setEmail(e)}
-              styles="text-white text-[18px] py-2"
-            />
-          </View>
-          <View>
-            <InputFields
-              hidden={true}
-              title="Password"
-              label="Password"
-              onchange={(e) => setPassword(e)}
-              styles="text-white text-[18px] py-2"
-            />
-          </View>
-          <View>
-            <InputFields
-              hidden={true}
-              title="Confirm Password"
-              label="Confirm Password"
-              onchange={(e) => setConfirmPassword(e)}
-              styles="text-white text-[18px] py-2"
-            />
-          </View>
-        </View>
-
-        <View className="w-[80%] mt-4">
-          {isError && (
-            <Text className="text-center text-md pb-3 text-red-600 font-medium">
-              {errorText}
-            </Text>
-          )}
-          {/* // <Text className="text-center text-md pb-3 text-red-600 font-medium">Error</Text> */}
-          <Buttons
-            style="w-[100%] bg-red-700 text-center text-white py-2 text-xl rounded-lg"
-            title="Create"
-            clicker={handleSubmit}
+          <TextInput
+            placeholder="Enter Student ID"
+            value="2018992737"
+            className="bg-blue-100 rounded-md px-3 py-2 mb-4 text-gray-800"
           />
-        </View>
+
+          {/* First Name */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">
+            First Name
+          </Text>
+          <TextInput
+            placeholder="Enter First Name"
+            value="Jared"
+            className="bg-blue-100 rounded-md px-3 py-2 mb-4 text-gray-800"
+          />
+
+          {/* Last Name */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">
+            Last Name
+          </Text>
+          <TextInput
+            placeholder="Enter Last Name"
+            value="Rara"
+            className="bg-blue-100 rounded-md px-3 py-2 mb-4 text-gray-800"
+          />
+
+          {/* Email Address */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">
+            E-mail Address
+          </Text>
+          <TextInput
+            placeholder="Enter E-mail"
+            value="Jaredgwapo@gmail.com"
+            className="bg-blue-100 rounded-md px-3 py-2 mb-4 text-gray-800"
+          />
+
+          {/* Contact Number */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">
+            Contact Number
+          </Text>
+          <TextInput
+            placeholder="Enter Contact Number"
+            value="09228747741"
+            className="bg-blue-100 rounded-md px-3 py-2 mb-4 text-gray-800"
+          />
+
+          {/* Password */}
+          <Text className="text-lg font-bold text-gray-800 mb-2">Password</Text>
+          <TextInput
+            placeholder="Enter Password"
+            secureTextEntry
+            value="QWERTY123"
+            className="bg-blue-100 rounded-md px-3 py-2 mb-4 text-gray-800"
+          />
+
+          {/* Sign-Up Button */}
+          <TouchableOpacity className="bg-blue-600 py-3 rounded-full items-center mt-4">
+            <Text className="text-white text-lg font-bold">SIGN UP</Text>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
-    </ImageBackground>
+    </View>
   );
 }
-
-export default Register;
